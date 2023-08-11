@@ -31,5 +31,9 @@ Fitur ini ditujukan untuk mampu menampilkan jadwal dari pengambilan sampel diman
 Fitur pengelolaan data karyawan dilengkapi dengan fitur tampilan daftar karyawan, lihat detail karyawan dan edit data karyawan.
 ![Karyawan](./src/dump/Mockup/Karyawan.png "Karyawan")
 
+## Pengembangan
+
+SIAPS dikembangkan dengan dengan framework [React Js](https://react.dev/) dari sisi forntend, [Prisma](https://www.prisma.io/) dan [Express](https://expressjs.com/) pada sisi backend.
+
 <!-- - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh -->
