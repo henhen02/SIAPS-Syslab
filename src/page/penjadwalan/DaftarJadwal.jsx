@@ -54,7 +54,7 @@ const DaftarJadwal = () => {
               <div className="action-type">
                 <p className="action-title">Buat jadwal baru</p>
                 <div className="add-data">
-                  <AddButton path={"buatjadwal"} text={"Tambah"} />
+                  <AddButton path={"jadwalbaru"} text={"Tambah"} />
                 </div>
               </div>
             </div>

@@ -267,7 +267,7 @@ td{
   min-height: 100%;
 }
 .details-container {
-  height: 77%;
+  min-height: 77%;
   padding: 20px;
 }
 .edit-group {
@@ -314,7 +314,10 @@ td{
   display: flex;
   margin: 10px 10px 10px 5px;
 }
-
+.form-new-schedule label::after {
+  content: ("*");
+  color: red;
+}
 /* ========== Loading animation ========== */
 .lds-ellipsis {
   display: inline-block;

@@ -34,7 +34,7 @@ const route = createBrowserRouter(
         <Route path="penjadwalan" element={<Penjadwalan />}>
           <Route index element={<DaftarJadwal />} />
           <Route path=":id" element={<DetailJadwal />} />
-          <Route path="penjadwalan" element={<BuatJadwal />} />
+          <Route path="jadwalbaru" element={<BuatJadwal />} />
         </Route>
         <Route path="karyawan" element={<Karyawan />}>
           <Route index element={<DaftarKaryawan />} />
