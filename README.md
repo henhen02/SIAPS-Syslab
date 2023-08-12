@@ -1,9 +1,3 @@
-<style>
-    .figcaption{
-
-    }
-</style>
-
 # SIAPS (Sistem Antrian Pengambilan Sampel)
 
 SIAPS adalah sistem yang didesain untuk mampu menangani pembuatan tiket pengambilan sampel untuk PT Syslab Lampung.
@@ -19,16 +13,19 @@ Fitur login adalah fitur untuk memastikan keamanan dari akses terhadap sistem SI
 #### Beranda
 
 Beranda merupakan fitur pertama yang akan dilihat oleh pengguna terkhusus admin pada saat pertama mengakses sistem SIAPS. Selain itu pada side-bar, pengguna dapat melihat beberapa pilihat fitur yang dapat diakses oleh pengguna (Admin) dimulai dengan penjadawalan, karyawan dan profil.
+
 ![Beranda](./src/dump/Mockup/Home-page.png "Beranda")
 
 #### Penjadwalan
 
 Fitur ini ditujukan untuk mampu menampilkan jadwal dari pengambilan sampel dimana dalam fitur ini memiliki beberapa sub fitur untuk pembuatan jadwal dan lihat detail jadwal.
+
 ![Penjadwalan](./src/dump/Mockup/Penjadwalan.png "Penjadwalan")
 
 #### Karyawan
 
 Fitur pengelolaan data karyawan dilengkapi dengan fitur tampilan daftar karyawan, lihat detail karyawan dan edit data karyawan.
+
 ![Karyawan](./src/dump/Mockup/Karyawan.png "Karyawan")
 
 ## Pengembangan

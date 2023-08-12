@@ -38,11 +38,9 @@ export const SearchButton = ({ path, text }) => {
 
 export const SaveButton = ({ path, text }) => {
   return (
-    <div className="button save">
-      <Link to={path}>
-        <AiIcon.AiOutlineSave size={12} />
-        {text}
-      </Link>
-    </div>
+    <button className="save">
+      <AiIcon.AiOutlineSave size={12} />
+      {text}
+    </button>
   );
 };

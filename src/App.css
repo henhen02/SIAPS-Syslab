@@ -149,13 +149,17 @@ footer {
   background-color: rgba(38, 37, 103, .5);
 }
 .save {
+  padding: 5px;
+  display: flex;
+  color: #d2d2d2;
+  border-radius: 5px;
   background-color: rgb(38, 37, 103);
 }
-.save a {
-  color: #d2d2d2;
+.save svg {
+  margin-right: 5px;
 }
 .save:hover {
-  background-color: rgba(38, 37, 103, .5);
+  background-color: rgba(38, 37, 103, .8);
 }
 .search {
   border: none;
@@ -185,7 +189,7 @@ footer {
   margin-bottom: 20px;
 }
 .schedule-container {
-  min-height: 68%;
+  min-height: 65%;
 }
 table {
   width: 100%;
@@ -313,6 +317,9 @@ td{
 .edit-input input:disabled {
   width: fit-content;
   background-color: rgba(0, 0, 0, .2);
+}
+.select-many {
+  margin-bottom: 10px;
 }
 .handling-page {
   flex: 1;

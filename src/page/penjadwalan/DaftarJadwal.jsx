@@ -4,11 +4,7 @@ import {
   StatusTaskLate,
   StatusTaskProgress,
 } from "../../components/WarningContent";
-import {
-  AddButton,
-  DetailButton,
-  SearchButton,
-} from "../../components/ActionButton";
+import { AddButton, DetailButton } from "../../components/ActionButton";
 import { useState } from "react";
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
@@ -24,6 +20,8 @@ const DaftarJadwal = () => {
   const [search, setSearch] = useState("");
 
   const [dataRender, setDataRender] = useState(data);
+
+  const getTimeNow = new Date();
 
   const handleChangeSearch = (e) => {
     setSearch(e.target.value);

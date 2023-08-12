@@ -24,9 +24,11 @@ function DetailJadwal() {
           </div>
           <div className="container details-container">
             <h3>Rincian Tiket</h3>
-            <div className="ticket-details">
-              <h5>Tiket ID</h5>
-              <p>{data?.id}</p>
+            <div className="header">
+              <p>
+                <b>Tiket ID : </b>
+                {data?.id.toUpperCase()}
+              </p>
             </div>
             <div className="ticket-details">
               <h5>Instansi</h5>

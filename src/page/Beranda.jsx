@@ -6,8 +6,13 @@ import {
 } from "../components/WarningContent";
 import BarChart from "../layouts/BarChart";
 import Header from "../layouts/Header";
+import useDaftarJadwal from "../hooks/useDaftarJadwal";
 
 export default function Beranda() {
+  const { data, isLoading, error } = useDaftarJadwal();
+  let countdone = 0;
+  let countprogress = 0;
+  let countlate = 0;
   return (
     <>
       <main className="main-loged">
@@ -19,17 +24,23 @@ export default function Beranda() {
             <div className="title-container">
               <h2>Jadwal Hari Ini</h2>
               <p>
-                <b>{2} jadwal</b> untuk diselesaikan
+                <b>
+                  {data?.map((item, index) => {
+                    countprogress += 1;
+                  })}
+                  {countprogress} jadwal
+                </b>
+                untuk diselesaikan
               </p>
             </div>
             <div className="count-today">
               <div className="schedule-today">
                 <p>Diproses</p>
-                <h3 id="scheduleProgress">{"1"}</h3>
+                <h3 id="scheduleProgress">{countprogress}</h3>
               </div>
               <div className="schedule-today">
                 <p>Selesai</p>
-                <h3 id="scheduleDone">{"1"}</h3>
+                <h3 id="scheduleDone">{countdone}</h3>
               </div>
             </div>
           </div>
@@ -44,22 +55,22 @@ export default function Beranda() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>PT Tanggamus Electric Power</td>
-                  <td>Lampung</td>
-                  <td>Engineer</td>
-                  <td>
-                    <StatusTaskProgress />
-                  </td>
-                </tr>
-                <tr>
-                  <td>PT Tanggamus Electric Power</td>
-                  <td>Lampung</td>
-                  <td>Engineer</td>
-                  <td>
-                    <StatusTaskDone />
-                  </td>
-                </tr>
+                {data?.map((item, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{item.instansi}</td>
+                      <td>{item.lokasi}</td>
+                      <td>{item.user[0].nama}</td>
+                      <td>
+                        {item.statusId === 1 ? (
+                          <StatusTaskProgress />
+                        ) : (
+                          <StatusTaskDone />
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
