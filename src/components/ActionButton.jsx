@@ -25,12 +25,14 @@ export const AddButton = ({ path, text }) => {
   );
 };
 
-export const SearchButton = ({ func, text }) => {
+export const SearchButton = ({ path, text }) => {
   return (
-    <button className="search" onClick={func}>
-      <AiIcon.AiOutlineSearch size={12} />
-      {text}
-    </button>
+    <div className="button search">
+      <Link to={path}>
+        <AiIcon.AiOutlineSearch size={12} />
+        {text}
+      </Link>
+    </div>
   );
 };
 

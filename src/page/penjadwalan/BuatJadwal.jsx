@@ -8,8 +8,6 @@ function BuatJadwal() {
   const [total, setTotal] = useState(1);
   const { data, isLoading, error } = useDaftarKaryawan();
 
-  useEffect(() => console.log(total), [total]);
-
   const SelectKaryawan = () => {
     return (
       <>
@@ -51,13 +49,7 @@ function BuatJadwal() {
         </div>
         <div className="container details-container">
           <form action="" className="form-new-schedule">
-            <h3
-              onClick={() => {
-                SelectTotalKaryawan;
-              }}
-            >
-              Buat Jadwal Baru
-            </h3>
+            <h3>Buat Jadwal Baru</h3>
             <div className="edit-group">
               <div className="edit-container">
                 <label htmlFor="instansi">Instansi Tujuan</label>

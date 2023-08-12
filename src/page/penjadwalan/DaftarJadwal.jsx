@@ -1,6 +1,7 @@
 import React from "react";
 import {
   StatusTaskDone,
+  StatusTaskLate,
   StatusTaskProgress,
 } from "../../components/WarningContent";
 import {
@@ -13,14 +14,36 @@ import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import useDaftarJadwal from "../../hooks/useDaftarJadwal";
 import { ErrorPage, LoadingPage } from "../HandlingPages";
+import { useEffect } from "react";
+import { useSWRConfig } from "swr";
 
 const DaftarJadwal = () => {
-  const { data, isLoading, error } = useDaftarJadwal();
+  let { data, isLoading, error } = useDaftarJadwal();
+  const { mutate } = useSWRConfig();
 
-  const [task, setTask] = useState(1);
-  const myFunc = () => {
-    alert("Cari apa kontol?");
+  const [search, setSearch] = useState("");
+
+  const [dataRender, setDataRender] = useState(data);
+
+  const handleChangeSearch = (e) => {
+    setSearch(e.target.value);
   };
+
+  useEffect(() => {
+    if (search != "") {
+      setDataRender(
+        data.filter((item) => {
+          return item.instansi.toLowerCase().includes(search.toLowerCase());
+        })
+      );
+    } else {
+      mutate("http://127.0.0.1:8080/jadwal");
+      setDataRender(data);
+    }
+  }, [search, isLoading]);
+  let doneStatus = 0;
+  let progressStatus = 0;
+  let lateStatus = 0;
 
   if (error) {
     return <ErrorPage />;
@@ -37,18 +60,19 @@ const DaftarJadwal = () => {
           <div className="container">
             <div className="action-container">
               <div className="action-type">
-                <p className="action-title">Rentang waktu percarian jadwal</p>
+                <p className="action-title">Cari Tiket</p>
                 <div className="search-container">
                   <div className="search-input-container">
                     <div className="input-date">
-                      <input type="date" name="date-start" />
-                    </div>
-                    <p>hingga</p>
-                    <div className="input-date">
-                      <input type="date" name="date-end" />
+                      <input
+                        type="Text"
+                        name="date-start"
+                        placeholder="Instansi"
+                        onChange={handleChangeSearch}
+                        value={search}
+                      />
                     </div>
                   </div>
-                  <SearchButton func={myFunc} text={"Cari"} />
                 </div>
               </div>
               <div className="action-type">
@@ -59,22 +83,34 @@ const DaftarJadwal = () => {
               </div>
             </div>
           </div>
-          <div className="container">
+          <div className="container schedule-container">
             <div className="header">
               <div className="title-container">
                 <h3>Jadwal</h3>
-                <p>
-                  Periode <b>{"Agustus 2023"}</b>
-                </p>
               </div>
               <div className="count-today">
                 <div className="schedule-today">
                   <p>Diproses</p>
-                  <h3 id="scheduleProgress">{22}</h3>
+                  <h3 id="scheduleProgress">
+                    {data?.map((item, index) => {
+                      if (item.statusId === 1) {
+                        progressStatus += 1;
+                      } else if (item.statusId === 2) {
+                        doneStatus += 1;
+                      } else {
+                        lateStatus += 1;
+                      }
+                    })}
+                    {progressStatus}
+                  </h3>
                 </div>
                 <div className="schedule-today">
                   <p>Selesai</p>
-                  <h3 id="scheduleDone">{1}</h3>
+                  <h3 id="scheduleDone">{doneStatus}</h3>
+                </div>
+                <div className="schedule-today">
+                  <p>Terlambat Selesai</p>
+                  <h3 id="scheduleDone">{lateStatus}</h3>
                 </div>
               </div>
             </div>
@@ -91,7 +127,7 @@ const DaftarJadwal = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data?.map((item, index) => {
+                  {dataRender?.map((item, index) => {
                     return (
                       <tr key={index}>
                         <td>{(index += 1)}</td>
@@ -102,12 +138,14 @@ const DaftarJadwal = () => {
                           })}
                         </td>
                         <td>{item.lokasi}</td>
-                        <td>{"Kontol"}</td>
+                        <td>{item.user[0].nama}</td>
                         <td>
                           {item.statusId === 1 ? (
                             <StatusTaskProgress />
-                          ) : (
+                          ) : item.statusId === 2 ? (
                             <StatusTaskDone />
+                          ) : (
+                            <StatusTaskLate />
                           )}
                         </td>
                         <td>

@@ -18,3 +18,12 @@ export const StatusTaskDone = () => {
     </div>
   );
 };
+
+export const StatusTaskLate = () => {
+  return (
+    <div className="status-task late">
+      <AiIcon.AiOutlineWarning color="#c9723e" />
+      Terlambat
+    </div>
+  );
+};

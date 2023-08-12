@@ -95,7 +95,6 @@ footer {
   color: rgb(38, 37, 103);
 }
 .header {
-  flex: 1;
   padding: 15px;
   font-size: 12px;
   display: inherit;
@@ -185,6 +184,9 @@ footer {
   padding: 5px 15px;
   margin-bottom: 20px;
 }
+.schedule-container {
+  min-height: 68%;
+}
 table {
   width: 100%;
   color: #000;
@@ -217,6 +219,9 @@ td{
 }
 .done {
   background-color: rgba(61, 181, 75, .4);
+}
+.late {
+  background-color: rgba(239, 255, 41, .4);
 }
 .chart-container {
   width: 90%;
@@ -251,7 +256,7 @@ td{
   border: 1px solid rgba(38, 37, 103, .3);
 }
 .search-input-container{
-  width: 300px;
+  width: 200px;
   display: inherit;
   align-items: center;
   justify-content: space-between;
