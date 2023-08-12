@@ -318,6 +318,13 @@ td{
   content: ("*");
   color: red;
 }
+.ticket-details {
+  width: 500px;
+  padding: 5px 10px;
+  margin: 10px auto 10px auto;
+  display: flex;
+  justify-content: space-between;
+}
 /* ========== Loading animation ========== */
 .lds-ellipsis {
   display: inline-block;

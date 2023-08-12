@@ -8,27 +8,27 @@ function BuatJadwal() {
   const [total, setTotal] = useState(1);
   const { data, isLoading, error } = useDaftarKaryawan();
 
+  useEffect(() => console.log(total), [total]);
+
   const SelectKaryawan = () => {
     return (
       <>
-        {(index = total) => {
-          return (
-            <select key={index}>
-              {data?.map((item, index) => {
-                return (
-                  <option key={index} value={item.id}>
-                    {item.nama}
-                  </option>
-                );
-              })}
-            </select>
-          );
-        }}
+        <select name="karyawan">
+          {data?.map((item, index) => {
+            return (
+              <option key={index} value={item.id}>
+                {item.nama}
+              </option>
+            );
+          })}
+        </select>
       </>
     );
   };
 
-  useEffect(() => console.log(total), [total]);
+  const SelectTotalKaryawan = () => {
+    console.log(total);
+  };
 
   return (
     <>
@@ -40,7 +40,7 @@ function BuatJadwal() {
           <form action="" className="form-new-schedule">
             <h3
               onClick={() => {
-                console.log(data);
+                SelectTotalKaryawan;
               }}
             >
               Buat Jadwal Baru
