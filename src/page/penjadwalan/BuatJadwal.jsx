@@ -13,22 +13,35 @@ function BuatJadwal() {
   const SelectKaryawan = () => {
     return (
       <>
-        <select name="karyawan">
-          {data?.map((item, index) => {
-            return (
-              <option key={index} value={item.id}>
-                {item.nama}
-              </option>
-            );
-          })}
-        </select>
+        {
+          <select>
+            {data?.map((item, index) => {
+              return (
+                <option key={index} value={item.id}>
+                  {item.nama}
+                </option>
+              );
+            })}
+          </select>
+        }
       </>
     );
   };
+  const [jumlahElementKaryawan, setJumlahElementKaryawan] = useState([
+    <SelectKaryawan key={0} />,
+  ]);
 
-  const SelectTotalKaryawan = () => {
-    console.log(total);
+  const handleChangejumlahKaryawan = (e) => {
+    setTotal(parseInt(e.target.value));
   };
+
+  useEffect(() => {
+    const elementKaryawan = [];
+    for (let i = 0; i < total; i++) {
+      elementKaryawan.push(<SelectKaryawan key={i} />);
+    }
+    setJumlahElementKaryawan(elementKaryawan);
+  }, [total, isLoading]);
 
   return (
     <>
@@ -92,9 +105,7 @@ function BuatJadwal() {
                   <select
                     name="total-engineer"
                     id="total-engineer"
-                    onChange={(e) => {
-                      setTotal(e.target.value);
-                    }}
+                    onChange={handleChangejumlahKaryawan}
                   >
                     <option value={1}>1</option>
                     <option value={2}>2</option>
@@ -108,7 +119,9 @@ function BuatJadwal() {
               <div className="edit-container">
                 <label htmlFor="instansi">Engineer</label>
                 <div className="edit-input">
-                  <SelectKaryawan />
+                  {jumlahElementKaryawan.map((item) => {
+                    return item;
+                  })}
                 </div>
               </div>
             </div>
