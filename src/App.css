@@ -61,6 +61,8 @@
 }
 .input-icon {
   display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 .input-icon input {
   flex: .9;
@@ -112,6 +114,20 @@ footer {
 }
 .container footer {
   border-radius: 10px;
+}
+
+.register-button {
+  margin-top: 10px;
+  text-align: center;
+}
+.register-button p {
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+.register-button a {
+  font-size: 14px;
+  text-decoration: none;
+  color: rgb(38, 37, 103);
 }
 
 /*==================Button styling==================*/

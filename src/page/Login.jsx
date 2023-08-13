@@ -1,35 +1,48 @@
 import React from "react";
-import { useState } from "react";
 import * as BiIcon from "react-icons/bi";
 import Footer from "../layouts/Footer";
 import SyslabLogo from "../assets/img/syslab-logo.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useUser } from "../hooks/useUser";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { axiosInstance } from "../../utils/axios";
+import { ErrorPage } from "./HandlingPages";
 
 const Login = () => {
-  const [inputType, setInputType] = useState("password");
-  const [iconType, setIconType] = useState(<BiIcon.BiSolidHide />);
-  const [input, setInput] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { from } = location.state || { from: { pathname: "/" } };
+  const { user, setUser } = useUser();
+
+  const [data, setData] = useState({
+    nip: "",
+    password: "",
+  });
 
   useEffect(() => {
     AOS.init();
   }, []);
 
-  // Password hide handler
-  const handleChangedInput = (evnt) => {
-    setInput(evnt.target.value);
+  const [loading, setLoading] = useState(true);
+
+  const handleInput = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
   };
-  const handleChangeVisibility = () => {
-    if (inputType === "password") {
-      setInputType("text");
-      setIconType(<BiIcon.BiSolidShow />);
-      return;
-    } else {
-      setInputType("password");
-      setIconType(<BiIcon.BiSolidHide />);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      axiosInstance.post("/api/auth/login", data, {
+        withCredentials: true,
+      }).then;
+    } catch (err) {
+      return <ErrorPage />;
     }
   };
+
   return (
     <main className="main-login">
       <div className="login-page-container">
@@ -85,31 +98,30 @@ const Login = () => {
           </div>
           <form action="" className="login-form">
             <div className="input-container">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="nip">NIP</label>
               <div className="input">
-                <input
-                  type="text"
-                  id="username"
-                  placeholder="username"
-                  required
-                />
+                <input type="text" id="nip" placeholder="NIP" required />
               </div>
             </div>
             <div className="input-container">
-              <label htmlFor="username">Password</label>
+              <label htmlFor="pass">Password</label>
               <div className="input input-icon">
                 <input
                   type={inputType}
                   id="password"
                   onChange={handleChangedInput}
                   value={input}
-                  placeholder="password"
+                  placeholder="********"
                   required
                 />
                 <span onClick={handleChangeVisibility}>{iconType}</span>
               </div>
             </div>
             <input type="button" name="Login" value="Login" id="login" />
+            <div className="register-button">
+              <p>Belum punya akun?</p>
+              <Link to={"/register"}>Daftar</Link>
+            </div>
           </form>
         </div>
       </div>

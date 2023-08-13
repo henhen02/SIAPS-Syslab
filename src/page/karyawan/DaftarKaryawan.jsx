@@ -28,7 +28,7 @@ function DaftarKaryawan() {
           </div>
           <div className="container">
             <div className="header">
-              <h2>Kontol</h2>
+              <h2>Daftar Karyawan</h2>
             </div>
             <div className="table-container">
               <table>
@@ -38,6 +38,7 @@ function DaftarKaryawan() {
                     <th>Nama</th>
                     <th>Alamat</th>
                     <th>Tanggal Lahir</th>
+                    <th>Telepon</th>
                     <th colSpan={2}>Jabatan</th>
                   </tr>
                 </thead>

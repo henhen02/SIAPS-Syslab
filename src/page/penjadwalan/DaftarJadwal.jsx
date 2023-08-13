@@ -21,8 +21,6 @@ const DaftarJadwal = () => {
 
   const [dataRender, setDataRender] = useState(data);
 
-  const getTimeNow = new Date();
-
   const handleChangeSearch = (e) => {
     setSearch(e.target.value);
   };
