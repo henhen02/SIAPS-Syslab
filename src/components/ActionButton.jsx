@@ -36,9 +36,9 @@ export const SearchButton = ({ path, text }) => {
   );
 };
 
-export const SaveButton = ({ path, text }) => {
+export const SaveButton = ({ handleSubmit, text }) => {
   return (
-    <button className="save">
+    <button className="save" onClick={handleSubmit}>
       <AiIcon.AiOutlineSave size={12} />
       {text}
     </button>
