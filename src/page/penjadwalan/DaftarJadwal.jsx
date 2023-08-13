@@ -12,9 +12,15 @@ import useDaftarJadwal from "../../hooks/useDaftarJadwal";
 import { ErrorPage, LoadingPage } from "../HandlingPages";
 import { useEffect } from "react";
 import { useSWRConfig } from "swr";
+import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
+import { useUser } from "../../hooks/useUser";
 
 const DaftarJadwal = () => {
   let { data, isLoading, error } = useDaftarJadwal();
+
+  const axiosPrivateInstance = useAxiosPrivate();
+  const { user } = useUser();
+
   const { mutate } = useSWRConfig();
 
   const [search, setSearch] = useState("");
@@ -33,7 +39,7 @@ const DaftarJadwal = () => {
         })
       );
     } else {
-      mutate("http://127.0.0.1:8080/jadwal");
+      mutate("/jadwal");
       setDataRender(data);
     }
   }, [search, isLoading]);
@@ -79,7 +85,7 @@ const DaftarJadwal = () => {
           <div className="container schedule-container">
             <div className="header">
               <div className="title-container">
-                <h3>Jadwal</h3>
+                <h3 onClick={() => console.log(data)}>Jadwal</h3>
               </div>
               <div className="count-today">
                 <div className="schedule-today">
@@ -131,7 +137,7 @@ const DaftarJadwal = () => {
                           })}
                         </td>
                         <td>{item.lokasi}</td>
-                        <td>{item.user[0].nama}</td>
+                        <td>{item.karyawan[0].nama}</td>
                         <td>
                           {item.statusId === 1 ? (
                             <StatusTaskProgress />
