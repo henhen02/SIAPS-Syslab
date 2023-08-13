@@ -1,17 +1,17 @@
-import axios from "axios";
+import { useAxiosPrivate } from "./useAxiosPrivate";
+
 // import useDaftarKaryawan from "./useDaftarKaryawan";
 import useSWR from "swr";
 
 const useDetailKaryawan = (params) => {
+  const axiosPrivateInstance = useAxiosPrivate();
+
   const fetcher = (url) =>
-    axios.get(url).then((res) => {
+    axiosPrivateInstance.get(url).then((res) => {
       console.log(params);
       return res.data;
     });
-  const { data, isLoading, error } = useSWR(
-    `http://localhost:8080/karyawan/${params}`,
-    fetcher
-  );
+  const { data, isLoading, error } = useSWR(`/karyawan/${params}`, fetcher);
   return { data, isLoading, error };
 };
 
