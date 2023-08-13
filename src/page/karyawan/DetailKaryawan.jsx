@@ -16,7 +16,7 @@ function DetailKaryawan() {
     nip: data?.nip,
     alamat: data?.alamat,
     telp: data?.telp,
-    jabatan: data?.jabatan.jabatan,
+    jabatan: data?.jabatanId,
   });
 
   const handleInput = (e) => {
@@ -29,14 +29,9 @@ function DetailKaryawan() {
       nip: data?.nip,
       alamat: data?.alamat,
       telp: data?.telp,
-      jabatan: data?.jabatan.jabatan,
+      jabatan: data?.jabatanId,
     });
   }, [data]);
-
-  if (error) {
-    return <ErrorPage />;
-  }
-
   return (
     <>
       {isLoading ? (
@@ -49,12 +44,12 @@ function DetailKaryawan() {
           <div className="container details-container">
             <div className="edit-group">
               <div className="edit-container">
-                <label htmlFor="nama">NIP</label>
+                <label htmlFor="nip">NIP</label>
                 <div className="edit-input">
                   <input
                     type="text"
-                    name="nama"
-                    id="nama"
+                    name="nip"
+                    id="nip"
                     defaultValue={data?.nip}
                     disabled
                     required
@@ -82,7 +77,7 @@ function DetailKaryawan() {
                         data?.jabatan.jabatan.slice(1)
                     );
                   }}
-                  htmlFor="nama"
+                  htmlFor="jabatan"
                 >
                   Jabatan
                 </label>
@@ -91,10 +86,7 @@ function DetailKaryawan() {
                     type="text"
                     name="jabatan"
                     id="jabatan"
-                    defaultValue={
-                      data?.jabatan.jabatan.charAt(0).toUpperCase() +
-                      data?.jabatan.jabatan.slice(0)
-                    }
+                    defaultValue={data?.jabatanId}
                     disabled
                     required
                   />

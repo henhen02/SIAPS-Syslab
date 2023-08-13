@@ -42,7 +42,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axiosInstance.post("/user/login", data, {
+      const response = await axiosInstance.post("/auth/login", data, {
         withCredentials: true,
       });
 
@@ -121,6 +121,7 @@ const Login = () => {
                   style={{
                     fontSize: "12px",
                   }}
+                  onClick={() => console.log(user)}
                 >
                   Selamat datang di SIAPS 👋
                 </p>

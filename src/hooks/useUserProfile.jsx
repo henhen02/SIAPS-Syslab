@@ -1,21 +1,21 @@
+import { useAxiosPrivate } from "./useAxiosPrivate";
 import useSWR from "swr";
 import { useUser } from "./useUser";
-import { useAxiosPrivate } from "./useAxiosPrivate";
 
-const useDaftarKaryawan = () => {
+const useUserProfile = () => {
+  const user = useUser();
   const axiosPrivateInstance = useAxiosPrivate();
-  const { user } = useUser();
-
   const fetcher = (url) =>
     axiosPrivateInstance
       .get(url, {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${user?.accessToken}`,
         },
       })
       .then((res) => res.data);
-  const { data, isLoading, error } = useSWR("/karyawan", fetcher);
-  return { data, isLoading, error };
+  const { data, isLoading, error, mutate } = useSWR("/user", fetcher);
+  return { data, isLoading, error, mutate };
 };
 
-export default useDaftarKaryawan;
+export default useUserProfile;

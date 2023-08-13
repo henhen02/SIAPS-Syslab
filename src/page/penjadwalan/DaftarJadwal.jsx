@@ -41,9 +41,6 @@ const DaftarJadwal = () => {
   let progressStatus = 0;
   let lateStatus = 0;
 
-  if (error) {
-    return <ErrorPage />;
-  }
   return (
     <>
       {isLoading ? (

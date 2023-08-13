@@ -34,15 +34,15 @@ export default function Beranda() {
         })
       );
     } else {
-      mutate("http://127.0.0.1:8080/jadwal");
+      mutate("/jadwal");
       setDataRender(data);
     }
   }, [data]);
   const timenow = new Date();
 
-  if (error) {
-    return <ErrorPage />;
-  }
+  // if (error) {
+  //   return <ErrorPage />;
+  // }
   return (
     <>
       {isLoading ? (

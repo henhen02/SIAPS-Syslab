@@ -8,10 +8,6 @@ import { ErrorPage, LoadingPage } from "../HandlingPages";
 function DaftarKaryawan() {
   const { data, isLoading, error } = useDaftarKaryawan();
 
-  if (error) {
-    return <ErrorPage />;
-  }
-
   return (
     <>
       {isLoading ? (
@@ -26,7 +22,7 @@ function DaftarKaryawan() {
               <AddButton path={"tambahkaryawan"} text={"Tambah"} />
             </div>
           </div>
-          <div className="container">
+          <div className="container staff-container">
             <div className="header">
               <h2>Daftar Karyawan</h2>
             </div>
@@ -36,8 +32,8 @@ function DaftarKaryawan() {
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
+                    <th>NIP</th>
                     <th>Alamat</th>
-                    <th>Tanggal Lahir</th>
                     <th>Telepon</th>
                     <th colSpan={2}>Jabatan</th>
                   </tr>

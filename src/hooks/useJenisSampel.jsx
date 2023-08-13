@@ -7,7 +7,7 @@ const useJenisSampel = () => {
 
   const fetcher = (url) =>
     axiosPrivateInstance.get(url).then((res) => res.data);
-  const { data, isLoading, error } = useSWR("/jenissampel", fetcher);
+  const { data, isLoading, error } = useSWR("public/jenissampel", fetcher);
   return { data, isLoading, error };
 };
 
