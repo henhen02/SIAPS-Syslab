@@ -356,6 +356,24 @@ td{
 .staff-container {
   min-height: 66%;
 }
+.column-container {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid rgba(38, 37, 103, .5);
+}
+.column-container input {
+  width: 100%;
+}
+.column-container select {
+  outline: none;
+  width: 100%;
+  border: none;
+}
+.centered {
+  width: 50%;
+  margin: auto
+}
 
 /* ========== Loading animation ========== */
 .lds-ellipsis {

@@ -89,29 +89,6 @@ function DetailKaryawan() {
                 </div>
               </div>
               <div className="edit-container">
-                <label
-                  onClick={() => {
-                    console.log(
-                      data?.jabatan.jabatan.charAt(0).toUpperCase() +
-                        data?.jabatan.jabatan.slice(1)
-                    );
-                  }}
-                  htmlFor="jabatan"
-                >
-                  Jabatan
-                </label>
-                <div className="edit-input">
-                  <input
-                    type="text"
-                    name="jabatan"
-                    id="jabatan"
-                    defaultValue={data?.jabatanId}
-                    disabled
-                    required
-                  />
-                </div>
-              </div>
-              <div className="edit-container">
                 <label htmlFor="nama">Alamat</label>
                 <div className="edit-input">
                   <input
@@ -138,11 +115,7 @@ function DetailKaryawan() {
                 </div>
               </div>
               <div className="edit-container">
-                <SaveButton
-                  path={""}
-                  text={"Simpan"}
-                  handleInput={handleSubmit}
-                />
+                <SaveButton text={"Simpan"} handleInput={handleSubmit} />
               </div>
             </div>
           </div>
@@ -154,26 +127,5 @@ function DetailKaryawan() {
     </>
   );
 }
-
-/* 
-[
-  {
-    "id": "442309b7-4366-4e70-9576-ed459d790179",
-    "nip": "120140186",
-    "password": "HendriAldiZulfan12345",
-    "nama": "Hendri Aldi Zulfan",
-    "alamat": "Sinar Negeri, Kec.Pubian, Kab.Lampung Tengah",
-    "telp": "+62857889418464",
-    "jabatanId": 1,
-    "refreshToken": null,
-    "createAt": "2023-08-08T18:30:06.287Z",
-    "updateAt": "2023-08-08T19:18:48.623Z",
-    "jabatan": {
-      "id": 1,
-      "jabatan": "kepala cabang"
-    }
-  }
-] 
-*/
 
 export default DetailKaryawan;
