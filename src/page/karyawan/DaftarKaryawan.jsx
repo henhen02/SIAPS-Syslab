@@ -43,11 +43,11 @@ function DaftarKaryawan() {
                     return (
                       <tr key={index}>
                         <td>{(index += 1)}</td>
-                        <td>{item.nama}</td>
-                        <td>{item.nip}</td>
-                        <td>{item.alamat}</td>
-                        <td>{item.telp}</td>
-                        <td>{item.jabatan.jabatan}</td>
+                        <td>{item?.nama}</td>
+                        <td>{item?.nip}</td>
+                        <td>{item?.alamat}</td>
+                        <td>{item?.telp}</td>
+                        <td>{item?.jabatan?.jabatan}</td>
                         <td>
                           <DetailButton path={`${item.id}`} text={"Rincian"} />
                         </td>
