@@ -1,16 +1,16 @@
-import axios from "axios";
 import useSWR from "swr";
 
+import { useAxiosPrivate } from "./useAxiosPrivate";
+
 const useDetailJadwal = (params) => {
+  const axiosPrivateInstance = useAxiosPrivate();
+
   const fetcher = (url) =>
-    axios.get(url).then((res) => {
+    axiosPrivateInstance.get(url).then((res) => {
       console.log(params);
       return res.data;
     });
-  const { data, isLoading, error } = useSWR(
-    `http://localhost:8080/jadwal/${params}`,
-    fetcher
-  );
+  const { data, isLoading, error } = useSWR(`/jadwal/${params}`, fetcher);
   return { data, isLoading, error };
 };
 
