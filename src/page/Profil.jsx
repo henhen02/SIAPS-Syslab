@@ -1,7 +1,10 @@
 import React from "react";
+import { useUser } from "../hooks/useUser";
 
 const Profil = () => {
-  return <div>Profil</div>;
+  const { user } = useUser();
+
+  return <div>{user?.nip}</div>;
 };
 
 export default Profil;
