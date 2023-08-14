@@ -167,15 +167,31 @@ footer {
 .save {
   padding: 5px;
   display: flex;
-  color: #d2d2d2;
+  border: none;
+  color: #fff;
   border-radius: 5px;
-  background-color: rgb(38, 37, 103);
+  background-color: rgb(61, 181, 75);
 }
 .save svg {
   margin-right: 5px;
 }
 .save:hover {
-  background-color: rgba(38, 37, 103, .8);
+  background-color: rgba(61, 181, 75, .4);
+}
+.back {
+  padding: 5px;
+  border: none;
+  display: flex;
+  align-items: center;
+  color: #d2d2d2;
+  border-radius: 5px;
+  background-color: rgb(38, 37, 103);
+}
+.back svg {
+  margin-right: 5px;
+}
+.back:hover {
+  background-color: rgba(38, 37, 103, .5);
 }
 .search {
   border: none;
@@ -251,7 +267,7 @@ td{
 }
 .action-container {
   padding: 15px;
-  display: inherit;
+  display: flex;
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
@@ -347,11 +363,20 @@ td{
   color: red;
 }
 .ticket-details {
-  width: 500px;
+  width: 100%;
   padding: 5px 10px;
   margin: 10px auto 10px auto;
   display: flex;
   justify-content: space-between;
+}
+.ticket-details p {
+  font-size: 14px;
+}
+.data-sampel {
+  padding: 5px;
+}
+.data-sampel p {
+  margin-bottom: 5px;
 }
 .staff-container {
   min-height: 66%;

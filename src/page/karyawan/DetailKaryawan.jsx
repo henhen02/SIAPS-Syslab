@@ -4,16 +4,18 @@ import useDetailKaryawan from "../../hooks/useDetailKaryawan";
 import { useParams } from "react-router-dom";
 import Footer from "../../layouts/Footer";
 import { useState, useEffect } from "react";
-import { SaveButton } from "../../components/ActionButton";
+import { BackButton, SaveButton } from "../../components/ActionButton";
 import { ErrorPage, LoadingPage } from "../HandlingPages";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { useUser } from "../../hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 function DetailKaryawan() {
   const { id } = useParams();
   const { user } = useUser();
   const { data, isLoading, error } = useDetailKaryawan(id);
   const axiosPrivateInstance = useAxiosPrivate();
+  const navigate = useNavigate();
 
   const [input, setInput] = useState({
     nama: data?.nama,
@@ -36,10 +38,16 @@ function DetailKaryawan() {
         withCredentials: true,
       });
 
-      console.log(res);
+      // console.log(res);
     } catch (error) {
       console.log(error);
+    } finally {
+      navigate("/karyawan");
     }
+  };
+
+  const handleBack = () => {
+    navigate("/karyawan");
   };
 
   useEffect(() => {
@@ -89,12 +97,12 @@ function DetailKaryawan() {
                 </div>
               </div>
               <div className="edit-container">
-                <label htmlFor="nama">Alamat</label>
+                <label htmlFor="alamat">Alamat</label>
                 <div className="edit-input">
                   <input
                     type="text"
-                    name="nama"
-                    id="nama"
+                    name="alamat"
+                    id="alamat"
                     defaultValue={data?.alamat}
                     onChange={handleInput}
                     required
@@ -102,19 +110,24 @@ function DetailKaryawan() {
                 </div>
               </div>
               <div className="edit-container">
-                <label htmlFor="nama">Nomor Telepon</label>
+                <label htmlFor="telp">Nomor Telepon</label>
                 <div className="edit-input">
                   <input
                     type="text"
-                    name="nama"
-                    id="nama"
+                    name="telp"
+                    id="telp"
                     defaultValue={data?.telp}
                     onChange={handleInput}
                     required
                   />
                 </div>
               </div>
-              <div className="edit-container">
+              <div className="edit-container action-container">
+                <BackButton
+                  text={"Kembali"}
+                  handleInput={handleBack}
+                  path={"/karyawan"}
+                />
                 <SaveButton text={"Simpan"} handleInput={handleSubmit} />
               </div>
             </div>

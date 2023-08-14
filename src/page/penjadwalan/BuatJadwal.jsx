@@ -8,10 +8,12 @@ import * as AiIcon from "react-icons/ai";
 import { LoadingPage } from "../HandlingPages";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { useUser } from "../../hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 function BuatJadwal() {
   const axiosPrivateInstance = useAxiosPrivate();
   const { user } = useUser();
+  const navigate = useNavigate();
 
   const [total, setTotal] = useState(1);
   const [totalsampel, setTotalsampel] = useState(1);
@@ -128,9 +130,11 @@ function BuatJadwal() {
           Authorization: `Bearer ${user?.accessToken}`,
         },
       });
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       console.log(error);
+    } finally {
+      navigate("/penjadwalan");
     }
   };
 

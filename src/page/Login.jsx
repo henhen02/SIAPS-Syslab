@@ -161,10 +161,6 @@ const Login = () => {
                   id="login"
                   onClick={handleSubmit}
                 />
-                <div className="register-button">
-                  <p>Belum punya akun?</p>
-                  <Link to={"/register"}>Daftar</Link>
-                </div>
               </form>
             </div>
           </div>

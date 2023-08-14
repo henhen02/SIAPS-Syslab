@@ -44,3 +44,21 @@ export const SaveButton = ({ path, text, handleInput }) => {
     </button>
   );
 };
+
+export const BackButton = ({ path, text, handleInput }) => {
+  return (
+    <button to={path} className="back" onClick={handleInput}>
+      <AiIcon.AiOutlineLeft size={12} />
+      {text}
+    </button>
+  );
+};
+
+export const DoneTask = ({ path, text, handleInput }) => {
+  return (
+    <button to={path} className="save" onClick={handleInput}>
+      <AiIcon.AiOutlineFileDone size={12} />
+      {text}
+    </button>
+  );
+};

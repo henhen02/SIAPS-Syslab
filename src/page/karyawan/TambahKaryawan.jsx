@@ -8,17 +8,19 @@ import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useUser } from "../../hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 function TambahKaryawan() {
   const { data, isLoading, error } = useDaftarJabatan();
   const axiosPrivateInstance = useAxiosPrivate();
   const { user } = useUser();
+  const navigate = useNavigate();
 
   const [input, setInput] = useState({
     nama: "",
     nip: "",
     alamat: "",
-    jabatanId: "",
+    jabatanId: "3",
     telp: "",
   });
 
@@ -35,10 +37,11 @@ function TambahKaryawan() {
         },
         withCredentials: true,
       });
-
-      console.log(res);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      null;
+    } finally {
+      navigate("/karyawan");
     }
   };
 
@@ -128,7 +131,12 @@ function TambahKaryawan() {
                       name="jabatanId"
                       id="jabatan"
                       onChange={(e) => {
-                        setInput({ jabatanId: e.target.value || null });
+                        setInput((prev) => {
+                          return {
+                            ...prev,
+                            jabatanId: e.target.value,
+                          };
+                        });
                       }}
                       value={input?.jabatanId || ""}
                     >

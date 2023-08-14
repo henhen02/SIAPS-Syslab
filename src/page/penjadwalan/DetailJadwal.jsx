@@ -4,15 +4,36 @@ import useDetailJadwal from "../../hooks/useDetailJadwal";
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { ErrorPage, LoadingPage } from "../HandlingPages";
+import { BackButton, DoneTask } from "../../components/ActionButton";
+import {
+  StatusTaskDone,
+  StatusTaskProgress,
+} from "../../components/WarningContent";
+import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
+import { useUser } from "../../hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 function DetailJadwal() {
   const { id } = useParams();
   const { data, isLoading, error } = useDetailJadwal(id);
+  const axiosPrivateInstance = useAxiosPrivate();
+  const navigate = useNavigate();
 
-  if (error) {
-    return <ErrorPage />;
-  }
+  const handleDoneButton = async () => {
+    try {
+      await axiosPrivateInstance.put(`/jadwal/${id}`, {
+        withCredentials: true,
+      });
+    } catch (error) {
+      null;
+    } finally {
+      navigate("/penjadwalan");
+    }
+  };
 
+  const handleBackButton = () => {
+    navigate("/penjadwalan");
+  };
   return (
     <>
       {isLoading ? (
@@ -53,6 +74,40 @@ function DetailJadwal() {
             <div className="ticket-details">
               <h5>Kontak Penanggung Jawab</h5>
               <p>{data?.kontak_pj}</p>
+            </div>
+            <div className="ticket-details">
+              <h5>Petugas</h5>
+              <div className="data-sampel">
+                {data?.karyawan?.map((item, index) => {
+                  return <p key={index}>{item.nama}</p>;
+                })}
+              </div>
+            </div>
+            <div className="ticket-details">
+              <h5>Sampel</h5>
+              <div className="data-sampel">
+                {data?.jenisSampel?.map((item, index) => {
+                  return <p key={index}>{item.sampel}</p>;
+                })}
+              </div>
+            </div>
+            <div className="ticket-details">
+              <h5>Status Tiket</h5>
+              <p>
+                {data?.statusId === 1 ? (
+                  <StatusTaskProgress />
+                ) : (
+                  <StatusTaskDone />
+                )}
+              </p>
+            </div>
+            <div className="action-container">
+              {data?.statusId === 2 ? (
+                <></>
+              ) : (
+                <DoneTask text={"Selesai"} handleInput={handleDoneButton} />
+              )}
+              <BackButton text={"Kembali"} handleInput={handleBackButton} />
             </div>
           </div>
           <div className="container">

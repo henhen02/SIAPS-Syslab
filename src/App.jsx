@@ -25,9 +25,7 @@ import TambahKaryawan from "./page/karyawan/TambahKaryawan";
 import { Routes, Route } from "react-router-dom";
 import DaftarJadwal from "./page/penjadwalan/DaftarJadwal";
 import DaftarKaryawan from "./page/karyawan/DaftarKaryawan";
-import { BrowserRouter } from "react-router-dom";
 import Login from "./page/Login";
-import Register from "./page/Register";
 
 const route = createBrowserRouter(
   createRoutesFromElements(
@@ -48,7 +46,6 @@ const route = createBrowserRouter(
         <Route path="profil" element={<Profil />} />
       </Route>
       <Route path="login" element={<Login />} />
-      <Route path="register" element={<Register />} />
     </>
   )
 );

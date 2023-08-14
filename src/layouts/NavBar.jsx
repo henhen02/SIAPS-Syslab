@@ -1,8 +1,26 @@
 import React from "react";
 import * as AiIcon from "react-icons/ai";
 import { NavLink } from "react-router-dom";
+import { axiosInstance } from "../../utils/axios";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../hooks/useUser";
 
 const NavBar = () => {
+  const navigate = useNavigate();
+  const { user, setUser } = useUser();
+
+  const Logout = async () => {
+    try {
+      await axiosInstance.get("/auth/logout", {
+        withCredentials: true,
+      });
+      setUser(null);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      navigate("/login");
+    }
+  };
   return (
     <nav>
       <div className="nav-content">
@@ -39,7 +57,7 @@ const NavBar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/"}>
+            <NavLink to="/login" onClick={Logout}>
               <AiIcon.AiOutlineLogout />
               Logout
             </NavLink>
