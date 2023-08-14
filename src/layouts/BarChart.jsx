@@ -12,23 +12,16 @@ import { Bar } from "react-chartjs-2";
 
 ChartJs.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-const BarChart = () => {
+const BarChart = ({ forlabels, fordatasets }) => {
   const data = {
-    labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni"],
+    labels: forlabels,
     datasets: [
       {
-        label: "Selesai tepat waktu",
-        data: [24, 21, 27, 30, 16, 20, 31],
+        label: "Permintaan Sampling",
+        data: fordatasets,
         borderWidth: 1,
         borderColor: "rgba(61, 181, 75, 1)",
         backgroundColor: "rgba(61, 181, 75, .2)",
-      },
-      {
-        label: "Terlambat diselesaikan",
-        data: [1, 2, 0, 3, 5, 0, 2],
-        borderWidth: 1,
-        borderColor: "rgba(255, 0, 0, 1)",
-        backgroundColor: "rgba(255, 0, 0, .2)",
       },
     ],
   };

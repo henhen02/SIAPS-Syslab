@@ -12,14 +12,11 @@ import useDaftarJadwal from "../../hooks/useDaftarJadwal";
 import { ErrorPage, LoadingPage } from "../HandlingPages";
 import { useEffect } from "react";
 import { useSWRConfig } from "swr";
-import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
-import { useUser } from "../../hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 const DaftarJadwal = () => {
   let { data, isLoading, error } = useDaftarJadwal();
-
-  const axiosPrivateInstance = useAxiosPrivate();
-  const { user } = useUser();
+  const navigate = useNavigate();
 
   const { mutate } = useSWRConfig();
 
@@ -47,6 +44,9 @@ const DaftarJadwal = () => {
   let progressStatus = 0;
   let lateStatus = 0;
 
+  useEffect(() => {
+    setDataRender(data);
+  }, [data]);
   return (
     <>
       {isLoading ? (
@@ -133,7 +133,7 @@ const DaftarJadwal = () => {
                         <td>{item.instansi}</td>
                         <td>
                           {new Date(item.tanggal).toLocaleDateString("id-ID", {
-                            dateStyle: "medium",
+                            dateStyle: "long",
                           })}
                         </td>
                         <td>{item.lokasi}</td>

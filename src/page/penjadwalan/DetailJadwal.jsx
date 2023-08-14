@@ -102,12 +102,12 @@ function DetailJadwal() {
               </p>
             </div>
             <div className="action-container">
+              <BackButton text={"Kembali"} handleInput={handleBackButton} />
               {data?.statusId === 2 ? (
                 <></>
               ) : (
                 <DoneTask text={"Selesai"} handleInput={handleDoneButton} />
               )}
-              <BackButton text={"Kembali"} handleInput={handleBackButton} />
             </div>
           </div>
           <div className="container">

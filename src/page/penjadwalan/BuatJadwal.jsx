@@ -9,6 +9,7 @@ import { LoadingPage } from "../HandlingPages";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { useUser } from "../../hooks/useUser";
 import { useNavigate } from "react-router-dom";
+import { BackButton } from "../../components/ActionButton";
 
 function BuatJadwal() {
   const axiosPrivateInstance = useAxiosPrivate();
@@ -50,7 +51,7 @@ function BuatJadwal() {
   const SelectKaryawan = ({ text, index }) => {
     return (
       <>
-        <label htmlFor="petugas">{text}</label>
+        <label htmlFor="karyawan">{text}</label>
         <select
           name="karyawan"
           className=" select-many"
@@ -115,6 +116,10 @@ function BuatJadwal() {
 
   const handleChangejumlahSampel = (e) => {
     setTotalsampel(parseInt(e.target.value));
+  };
+
+  const handleBackButton = () => {
+    navigate("/penjadwalan");
   };
 
   const handleInput = (e) => {
@@ -319,7 +324,8 @@ function BuatJadwal() {
                   </div>
                 </div>
               </div>
-              <div className="edit-group">
+              <div className="action-container">
+                <BackButton text={"Kembali"} handleInput={handleBackButton} />
                 <button className="save">
                   <AiIcon.AiOutlineSave size={12} />
                   Simpan

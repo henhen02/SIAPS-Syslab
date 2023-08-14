@@ -3,7 +3,7 @@ import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import useDaftarJabatan from "../../hooks/useDaftarJabatan";
 import { LoadingPage } from "../HandlingPages";
-import { SaveButton } from "../../components/ActionButton";
+import { BackButton, SaveButton } from "../../components/ActionButton";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -23,6 +23,10 @@ function TambahKaryawan() {
     jabatanId: "3",
     telp: "",
   });
+
+  const handleBackButton = () => {
+    navigate("/karyawan");
+  };
 
   const handleInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -157,7 +161,8 @@ function TambahKaryawan() {
                     </select>
                   </div>
                 </div>
-                <div className="edit-container">
+                <div className="action-container">
+                  <BackButton handleInput={handleBackButton} text={"Kembali"} />
                   <SaveButton handleInput={handleSubmit} text={"Simpan"} />
                 </div>
               </form>
