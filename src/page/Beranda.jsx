@@ -46,9 +46,6 @@ export default function Beranda() {
   }, [data]);
   const timenow = new Date();
 
-  // if (error) {
-  //   return <ErrorPage />;
-  // }
   return (
     <>
       {isLoading ? (
@@ -60,24 +57,19 @@ export default function Beranda() {
           </div>
           <div className="container schedule-content">
             {datarender?.length === 0 ? (
-              <div className="noSchedule">
-                <h3>Tidak ada jadwal</h3>
-              </div>
+              <>
+                <div className="header">
+                  <h2>Jadwal Hari Ini</h2>
+                </div>
+                <div className="noSchedule">
+                  <h3>Tidak ada jadwal</h3>
+                </div>
+              </>
             ) : (
               <>
                 <div className="header">
                   <div className="title-container">
-                    <h2
-                      onClick={() => {
-                        console.log(
-                          timenow.toLocaleString("id-ID", {
-                            dateStyle: "medium",
-                          })
-                        );
-                      }}
-                    >
-                      Jadwal Hari Ini
-                    </h2>
+                    <h2>Jadwal Hari Ini</h2>
                     <p>
                       <b>
                         {datarender?.map((item, index) => {

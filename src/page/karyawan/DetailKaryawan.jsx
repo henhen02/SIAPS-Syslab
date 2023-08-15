@@ -4,7 +4,11 @@ import useDetailKaryawan from "../../hooks/useDetailKaryawan";
 import { useParams } from "react-router-dom";
 import Footer from "../../layouts/Footer";
 import { useState, useEffect } from "react";
-import { BackButton, SaveButton } from "../../components/ActionButton";
+import {
+  BackButton,
+  DeleteButton,
+  SaveButton,
+} from "../../components/ActionButton";
 import { ErrorPage, LoadingPage } from "../HandlingPages";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { useUser } from "../../hooks/useUser";
@@ -48,6 +52,21 @@ function DetailKaryawan() {
 
   const handleBack = () => {
     navigate("/karyawan");
+  };
+
+  const handleDeleteButton = async () => {
+    try {
+      await axiosPrivateInstance.delete(`/karyawan/${id}`, {
+        headers: {
+          Authorization: `Bearer ${user?.accessToken}`,
+        },
+        withCredentials: true,
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      navigate("/karyawan");
+    }
   };
 
   useEffect(() => {
@@ -129,6 +148,9 @@ function DetailKaryawan() {
                   path={"/karyawan"}
                 />
                 <SaveButton text={"Simpan"} handleInput={handleSubmit} />
+              </div>
+              <div className="edit-container action-container">
+                <DeleteButton text={"Hapus"} handleInput={handleDeleteButton} />
               </div>
             </div>
           </div>

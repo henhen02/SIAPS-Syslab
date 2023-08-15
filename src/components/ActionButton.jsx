@@ -62,3 +62,12 @@ export const DoneTask = ({ path, text, handleInput }) => {
     </button>
   );
 };
+
+export const DeleteButton = ({ path, text, handleInput }) => {
+  return (
+    <button to={path} className="delete" onClick={handleInput}>
+      <AiIcon.AiOutlineDelete size={12} />
+      {text}
+    </button>
+  );
+};
