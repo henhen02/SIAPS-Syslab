@@ -38,7 +38,7 @@ function BuatJadwal() {
     kontak_pj: "",
     karyawan: [
       {
-        id: "1",
+        id: "11",
       },
     ],
     jenisSampel: [
@@ -62,7 +62,9 @@ function BuatJadwal() {
               )
             );
           }}
+          id="karyawan"
         >
+          <option>Pilih Karyawan</option>
           {datakaryawan?.map((item, index) => {
             return (
               <option key={index} value={item.id}>
@@ -78,7 +80,7 @@ function BuatJadwal() {
   const SelectSampel = ({ text, index }) => {
     return (
       <>
-        <label htmlFor="sampel">{text}</label>
+        <label htmlFor="jenisSampel">{text}</label>
         <select
           name="jenisSampel"
           className="select-many"
@@ -89,7 +91,9 @@ function BuatJadwal() {
               )
             );
           }}
+          id="jenisSampel"
         >
+          <option>Pilih Jenis Sampel</option>
           {datasampel?.map((item, index) => {
             return (
               <option key={index} value={item.id}>
@@ -332,6 +336,12 @@ function BuatJadwal() {
                 </button>
               </div>
             </form>
+            <input
+              type="submit"
+              onClick={() => {
+                console.log(input);
+              }}
+            />
           </div>
           <div className="container">
             <Footer />

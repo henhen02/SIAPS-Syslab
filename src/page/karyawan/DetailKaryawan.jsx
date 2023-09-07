@@ -13,8 +13,10 @@ import { ErrorPage, LoadingPage } from "../HandlingPages";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { useUser } from "../../hooks/useUser";
 import { useNavigate } from "react-router-dom";
+import { useSWRConfig } from "swr";
 
 function DetailKaryawan() {
+  const { mutate } = useSWRConfig();
   const { id } = useParams();
   const { user } = useUser();
   const { data, isLoading, error } = useDetailKaryawan(id);
@@ -29,6 +31,10 @@ function DetailKaryawan() {
     jabatan: data?.jabatanId,
   });
 
+  const getAfterEdit = async () => {
+    await axiosPrivateInstance.get(`/karyawan/${id}`);
+  };
+
   const handleInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
@@ -41,12 +47,10 @@ function DetailKaryawan() {
         },
         withCredentials: true,
       });
-
-      // console.log(res);
+      mutate(`/karyawan/${id}`);
+      navigate("/karyawan");
     } catch (error) {
       console.log(error);
-    } finally {
-      navigate("/karyawan");
     }
   };
 
@@ -78,6 +82,7 @@ function DetailKaryawan() {
       jabatan: data?.jabatanId,
     });
   }, [data]);
+
   return (
     <>
       {isLoading ? (

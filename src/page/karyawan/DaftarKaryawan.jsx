@@ -4,9 +4,11 @@ import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import useDaftarKaryawan from "../../hooks/useDaftarKaryawan";
 import { ErrorPage, LoadingPage } from "../HandlingPages";
+import { useNavigate } from "react-router-dom";
 
 function DaftarKaryawan() {
   const { data, isLoading, error } = useDaftarKaryawan();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -49,7 +51,12 @@ function DaftarKaryawan() {
                         <td>{item?.telp}</td>
                         <td>{item?.jabatan?.jabatan}</td>
                         <td>
-                          <DetailButton path={`${item.id}`} text={"Rincian"} />
+                          <DetailButton
+                            handleInput={() => {
+                              navigate(`${item?.id}`);
+                            }}
+                            text={"Rincian"}
+                          />
                         </td>
                       </tr>
                     );

@@ -115,7 +115,7 @@ export default function Beranda() {
                           <tr key={index}>
                             <td>{item.instansi}</td>
                             <td>{item.lokasi}</td>
-                            <td>{item?.karyawan[0].nama}</td>
+                            <td>{item?.karyawan[0]?.nama}</td>
                             <td>
                               {item.statusId === 1 ? (
                                 <StatusTaskProgress />

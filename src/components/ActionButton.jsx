@@ -3,14 +3,12 @@ import * as MdIcon from "react-icons/md";
 import * as AiIcon from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-export const DetailButton = ({ path, text }) => {
+export const DetailButton = ({ path, text, handleInput }) => {
   return (
-    <div className="button details">
-      <Link to={path}>
-        <MdIcon.MdRemoveRedEye size={12} />
-        {text}
-      </Link>
-    </div>
+    <button className="details" to={path} onClick={handleInput}>
+      <MdIcon.MdRemoveRedEye size={12} />
+      {text}
+    </button>
   );
 };
 

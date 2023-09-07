@@ -137,7 +137,7 @@ const DaftarJadwal = () => {
                           })}
                         </td>
                         <td>{item.lokasi}</td>
-                        <td>{item.karyawan[0].nama}</td>
+                        <td>{item.karyawan[0]?.nama}</td>
                         <td>
                           {item.statusId === 1 ? (
                             <StatusTaskProgress />
@@ -148,7 +148,12 @@ const DaftarJadwal = () => {
                           )}
                         </td>
                         <td>
-                          <DetailButton path={`${item.id}`} text={"Rincian"} />
+                          <DetailButton
+                            handleInput={() => {
+                              navigate(`${item?.id}`);
+                            }}
+                            text={"Rincian"}
+                          />
                         </td>
                       </tr>
                     );
