@@ -31,10 +31,6 @@ function DetailKaryawan() {
     jabatan: data?.jabatanId,
   });
 
-  const getAfterEdit = async () => {
-    await axiosPrivateInstance.get(`/karyawan/${id}`);
-  };
-
   const handleInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
@@ -58,20 +54,37 @@ function DetailKaryawan() {
     navigate("/karyawan");
   };
 
-  const handleDeleteButton = async () => {
+  const handleDelete = async () => {
     try {
-      await axiosPrivateInstance.delete(`/karyawan/${id}`, {
+      const res = await axiosPrivateInstance.delete(`/karyawan/${id}`, {
         headers: {
           Authorization: `Bearer ${user?.accessToken}`,
         },
         withCredentials: true,
       });
-    } catch (error) {
-      console.log(error);
-    } finally {
       navigate("/karyawan");
+    } catch (error) {
+      console.log(data, error);
     }
   };
+
+  // const handleDelete = async () => {
+  //   try {
+  //     const res = await axiosPrivateInstance.delete(
+  //       `/karyawan/${id}`,
+  //       { id },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${user?.accessToken}`,
+  //         },
+  //         withCredentials: true,
+  //       }
+  //     );
+  //     navigate("/karyawan");
+  //   } catch (error) {
+  //     console.log(data, error);
+  //   }
+  // };
 
   useEffect(() => {
     setInput({
@@ -93,6 +106,16 @@ function DetailKaryawan() {
             <Header />
           </div>
           <div className="container details-container">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <h3>Rincian Data Karyawan</h3>
+              <DeleteButton text={"Hapus"} handleInput={handleDelete} />
+            </div>
             <div className="edit-group">
               <div className="edit-container">
                 <label htmlFor="nip">NIP</label>
@@ -153,9 +176,6 @@ function DetailKaryawan() {
                   path={"/karyawan"}
                 />
                 <SaveButton text={"Simpan"} handleInput={handleSubmit} />
-              </div>
-              <div className="edit-container action-container">
-                <DeleteButton text={"Hapus"} handleInput={handleDeleteButton} />
               </div>
             </div>
           </div>

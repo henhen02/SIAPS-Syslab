@@ -336,12 +336,6 @@ function BuatJadwal() {
                 </button>
               </div>
             </form>
-            <input
-              type="submit"
-              onClick={() => {
-                console.log(input);
-              }}
-            />
           </div>
           <div className="container">
             <Footer />

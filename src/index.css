@@ -15,6 +15,8 @@ body {
 .nav-content {
   height: 100%;
   padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
   border-radius: 10px;
   background-color: #fff;
   color: rgb(38, 37, 103);
@@ -50,10 +52,18 @@ body {
 .navigation-container li svg {
   margin-right: 5px;
 }
+.second-navigation {
+  flex: 1;
+  display: inherit;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .main-loged {
   width: 100%;
+  display: flex;
   min-height: 100vh;
   margin: 10px 10px 10px 5px;
+  flex-direction: column;
 }
 .main-login {
   width: 100vw;

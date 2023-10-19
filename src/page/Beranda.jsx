@@ -81,7 +81,7 @@ export default function Beranda() {
                   </div>
                   <div className="count-today">
                     <div className="schedule-today">
-                      <p>Diproses</p>
+                      <p>Selesai</p>
                       <h3 id="scheduleProgress">
                         {datarender?.map((item, index) => {
                           if (item?.statusId === 2) {
@@ -94,7 +94,7 @@ export default function Beranda() {
                       </h3>
                     </div>
                     <div className="schedule-today">
-                      <p>Selesai</p>
+                      <p>Diproses</p>
                       <h3 id="scheduleDone">{countprogress}</h3>
                     </div>
                   </div>
@@ -135,7 +135,7 @@ export default function Beranda() {
           <div className="container">
             <div className="header">
               <div className="title-header">
-                <h3>Grafik Kinerja</h3>
+                <h3>Grafik Permintaan Sampling</h3>
                 <p>
                   Periode{" "}
                   <b>

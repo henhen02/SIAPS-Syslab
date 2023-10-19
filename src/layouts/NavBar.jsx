@@ -39,29 +39,32 @@ const NavBar = () => {
           <li>
             <NavLink to={"penjadwalan"}>
               <AiIcon.AiOutlineCalendar />
-              Penjadawalan
+              Kelola Jadwal
             </NavLink>
           </li>
           <li>
             <NavLink to={"karyawan"}>
               <AiIcon.AiOutlineTeam />
-              Karyawan
+              Kelola Petugas
             </NavLink>
           </li>
         </ul>
         <ul className="navigation-container second-navigation">
-          <li>
-            <NavLink to={"profil"}>
-              <AiIcon.AiOutlineUser />
-              Profil
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/login" onClick={Logout}>
-              <AiIcon.AiOutlineLogout />
-              Logout
-            </NavLink>
-          </li>
+          <div></div>
+          <div>
+            <li>
+              <NavLink to={"profil"}>
+                <AiIcon.AiOutlineUser />
+                Profil
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/login" onClick={Logout}>
+                <AiIcon.AiOutlineLogout />
+                Logout
+              </NavLink>
+            </li>
+          </div>
         </ul>
       </div>
     </nav>

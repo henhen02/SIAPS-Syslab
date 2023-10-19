@@ -15,6 +15,7 @@ import { useSWRConfig } from "swr";
 import { useNavigate } from "react-router-dom";
 
 const DaftarJadwal = () => {
+  // fix reload data jadwal
   let { data, isLoading, error } = useDaftarJadwal();
   const navigate = useNavigate();
 
